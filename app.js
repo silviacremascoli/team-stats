@@ -55,6 +55,19 @@ const team = {
     };
     team._games.push(game);
   },
+  get totalGames() {
+    return `Until now our team played ${this.games.length} games.`;
+  },
+  get averagePoints() {
+    const points = this.games.map((score) => {
+      return score.teamPoints;
+    });
+    const pointsTotal = points.reduce((acc, currValue) => {
+      return acc + currValue;
+    }, 0);
+    const averageScore = pointsTotal / points.length;
+    return `Until now our average score has been ${Math.round(averageScore)}.`;
+  },
 };
 
 team.addPlayer("Bugs", "Bunny", 76);
@@ -62,3 +75,6 @@ console.log(team.players);
 
 team.addGame("Titans", 100, 98);
 console.log(team.games);
+
+console.log(team.totalGames);
+console.log(team.averagePoints);
